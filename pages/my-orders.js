@@ -24,7 +24,7 @@ export default function Orders() {
           {
             orders.map((order) => (
               <tr key={order.id}>
-                <td>{order.created_date}</td>  {/* Display order date */}
+                <td>{order.created_date}</td> {/* Display order date */}
                 <td>{order.total > 0 ? `$${order.total}` : '$0.00'}</td> {/* Display 0 if total is missing or 0 */}
                 <td>{order.payment_type || 'No payment method'}</td> {/* Display obscured account or fallback */}
               </tr>
