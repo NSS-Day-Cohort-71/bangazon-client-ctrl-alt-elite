@@ -1,5 +1,5 @@
 export default function CardLayout({ title, children, width="is-6" }) {
-  const [content, footer] = children
+  const [content, footer] = Array.isArray(children) ? children : [children, null];  // Ensure children is an array
   return (
     <div className="columns is-centered is-vcentered">
       <div className={`column ${width}`}>
@@ -14,9 +14,11 @@ export default function CardLayout({ title, children, width="is-6" }) {
               {content}
             </div>
           </div>
-          <footer className="card-footer">
-            {footer}
-          </footer>
+          {footer && (  // Only render footer if it exists
+            <footer className="card-footer">
+              {footer}
+            </footer>
+          )}
         </div>
       </div>
     </div>

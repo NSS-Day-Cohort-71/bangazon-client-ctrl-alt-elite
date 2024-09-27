@@ -24,14 +24,13 @@ export default function Orders() {
           {
             orders.map((order) => (
               <tr key={order.id}>
-                <td>{order.completed_on}</td>
-                <td>${order.total}</td>
-                <td>{order.payment_type?.obscured_num}</td>
+                <td>{order.created_date}</td>  {/* Display order date */}
+                <td>{order.total > 0 ? `$${order.total}` : '$0.00'}</td> {/* Display 0 if total is missing or 0 */}
+                <td>{order.payment_type || 'No payment method'}</td> {/* Display obscured account or fallback */}
               </tr>
             ))
           }
         </Table>
-        <></>
       </CardLayout>
     </>
   )
