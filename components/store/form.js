@@ -15,8 +15,8 @@ export default function StoreForm({ nameEl, descriptionEl, saveEvent, title, rou
         <textarea placeholder="Add a Description..." className="textarea" ref={descriptionEl}></textarea>
       </>
       <>
-        <a className="card-footer-item" onClick={saveEvent}>Save</a>
-        <a className="card-footer-item" onClick={() => router.back()}>Cancel</a>
+        <div className="card-footer-item" onClick={saveEvent}>Save</div>
+        <div className="card-footer-item" onClick={() => router.back()}>Cancel</div>
       </>
     </CardLayout>
   )
