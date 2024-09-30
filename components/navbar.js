@@ -87,7 +87,10 @@ export default function Navbar() {
       </div>
     );
   };
-
+  // UN-COMMITED fix to hide navbar when user in login form.
+  if (router.pathname === "/login") {
+    return null;
+  }
   return (
     <nav
       className="navbar mb-3 is-warning px-5 is-fixed-top is-top"

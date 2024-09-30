@@ -1,13 +1,21 @@
-import { useRef } from "react"
-import { Input } from "../form-elements"
-import Modal from "../modal"
-
-export default function AddPaymentModal({ showModal, setShowModal, addNewPayment }) {
-  const merchantNameInput = useRef()
-  const acctNumInput = useRef()
-  const expirationDateInput = useRef()
+import { useRef } from "react";
+import { Input } from "../form-elements";
+import Modal from "../modal";
+//Auto Updates
+export default function AddPaymentModal({
+  showModal,
+  setShowModal,
+  addNewPayment,
+}) {
+  const merchantNameInput = useRef();
+  const acctNumInput = useRef();
+  const expirationDateInput = useRef();
   return (
-    <Modal showModal={showModal} setShowModal={setShowModal} title="Add New Payment Method">
+    <Modal
+      showModal={showModal}
+      setShowModal={setShowModal}
+      title="Add New Payment Method"
+    >
       <>
         <Input
           id="merchantName"
@@ -31,14 +39,20 @@ export default function AddPaymentModal({ showModal, setShowModal, addNewPayment
       <>
         <button
           className="button is-success"
-          onClick={() => addNewPayment({
-            acctNumber: acctNumInput.current.value,
-            merchant: merchantNameInput.current.value,
-            expirationDate: expirationDateInput.current.value
-          })}
-        >Add Payment Method</button>
-        <button className="button" onClick={() => setShowModal(false)}>Cancel</button>
+          onClick={() =>
+            addNewPayment({
+              acctNumber: acctNumInput.current.value,
+              merchant: merchantNameInput.current.value,
+              expirationDate: expirationDateInput.current.value,
+            })
+          }
+        >
+          Add Payment Method
+        </button>
+        <button className="button" onClick={() => setShowModal(false)}>
+          Cancel
+        </button>
       </>
     </Modal>
-  )
+  );
 }
