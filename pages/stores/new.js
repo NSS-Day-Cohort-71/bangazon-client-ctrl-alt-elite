@@ -18,11 +18,18 @@ export default function NewStore() {
       name: nameEl.current.value,
       description: descriptionEl.current.value
     }).then((res) => {
+      console.log("Full response:", res); 
+      if (res &&  res.id) {
       setProfile({
         ...profile,
         store: res
       })
       router.push(`/stores/${res.id}`)
+    } else {
+      console.error('Store creation failed, missing store ID.')
+    }
+    }).catch((error) => {
+      console.error('Error creating store:', error);
     })
   }
 
