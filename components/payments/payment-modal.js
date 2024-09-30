@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Input } from "../form-elements";
 import Modal from "../modal";
-
+//Auto Updates
 export default function AddPaymentModal({
   showModal,
   setShowModal,
