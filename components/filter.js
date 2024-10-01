@@ -15,6 +15,7 @@ export default function Filter({ productCount, onSearch, locations }) {
 
   const [showFilters, setShowFilters] = useState(false)
   const [query, setQuery] = useState('')
+  const [searchValue, setSearchValue] = useState('')
   const [categories, setCategories] = useState([{id: 1, name: 'Apples'}, {id: 2, name: 'Oranges'}, {id: 3, name: 'Lemons'}])
   const [direction, setDirection] = useState('asc')
   const clear = () => {
@@ -74,6 +75,16 @@ export default function Filter({ productCount, onSearch, locations }) {
     setQuery(newQuery)
   }
 
+  const handleSearch = () => {
+    onSearch(searchValue); 
+  };
+  
+  const handleInputChange = (event) => {
+    const newValue = event.target.value;
+    setSearchValue(newValue);
+  };
+  
+
   return (
     <div className='level'>
       <div className="level-left">
@@ -83,19 +94,19 @@ export default function Filter({ productCount, onSearch, locations }) {
           </p>
         </div>
         <div className="level-item">
-          <Input
+        <Input
             placeholder="Find a Product"
-            id="name"
+            id="search"
             refEl={refEls.name}
             addlClass="has-addons"
-            extra={
-              <p className="control">
-                <button className="button is-primary" onClick={filter}>
-                  Search
-                </button>
-              </p>
-            }
-          />
+            onChangeEvent={handleInputChange}
+          >
+            <p className="control">
+              <button className="button is-primary" onClick={handleSearch}>
+                Search
+              </button>
+            </p>
+          </Input>
         </div>
       </div>
       <div className="level-right">
