@@ -14,7 +14,7 @@ export default function StoreDetail() {
   const { id } = router.query
   const [store, setStore] = useState({})
   const [isOwner, setIsOwner] = useState(false)
-
+console.log(id)
   useEffect(() => {
     if (id) {
       refresh()
