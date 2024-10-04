@@ -5,10 +5,24 @@ import { Textarea, Select, Input } from '../form-elements'
 
 export default function ProductForm({ formEl, saveEvent, title, router }) {
   const [categories, setCategories] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    getCategories().then(catData => setCategories(catData))
+    getCategories()
+      .then(catData => {
+        setCategories(catData)
+        setIsLoading(false)
+      })
+      .catch(err => {
+        console.error("Failed to fetch categories:", err)
+        setError("Failed to load categories. Please try again later.")
+        setIsLoading(false)
+      })
   }, [])
+
+  if (isLoading) return <div>Loading...</div>
+  if (error) return <div>{error}</div>
 
   return (
     <CardLayout title={title}>
@@ -48,5 +62,3 @@ export default function ProductForm({ formEl, saveEvent, title, router }) {
     </CardLayout>
   )
 }
-
-
