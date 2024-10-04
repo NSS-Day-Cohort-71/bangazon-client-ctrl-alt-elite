@@ -15,11 +15,9 @@ export default function Filter({ productCount, onSearch, locations }) {
 
   const [showFilters, setShowFilters] = useState(false);
   const [query, setQuery] = useState("");
-  const [categories, setCategories] = useState([
-    { id: 1, name: "Apples" },
-    { id: 2, name: "Oranges" },
-    { id: 3, name: "Lemons" },
-  ]);
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [direction, setDirection] = useState("asc");
   const clear = () => {
     for (let ref in refEls) {
@@ -61,6 +59,19 @@ export default function Filter({ productCount, onSearch, locations }) {
       onSearch(query);
     }
   }, [query]);
+
+  useEffect(() => {
+    getCategories()
+      .then(catData => {
+        setCategories(catData)
+        setIsLoading(false)
+      })
+      .catch(err => {
+        console.error("Failed to fetch categories:", err)
+        setError("Failed to load categories. Please try again later.")
+        setIsLoading(false)
+      })
+  }, [])
 
   const buildQuery = (key, value) => {
     if (value && value !== "0") {
