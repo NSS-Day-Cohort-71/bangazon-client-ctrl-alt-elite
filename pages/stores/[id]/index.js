@@ -14,15 +14,16 @@ export default function StoreDetail() {
   const { id } = router.query
   const [store, setStore] = useState({})
   const [isOwner, setIsOwner] = useState(false)
-console.log(id)
+
   useEffect(() => {
     if (id) {
       refresh()
     }
-    if (parseInt(id) === profile.store?.id) {
+    if (parseInt(id) === profile?.store?.id) {
       setIsOwner(true)
     }
   }, [id, profile])
+
 
   const refresh = () => getStoreById(id).then(storeData => {
     if (storeData) {
